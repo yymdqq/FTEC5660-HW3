@@ -199,7 +199,12 @@ The agent uses an explicit workflow implemented with LangChain and the required 
 > your point score on `public_test`, the companies where your verdicts disagree with the public answers, and why.
 
 I evaluated the implementation on the 20 companies in `public_test` using:python hw3.py --data-folder public_test
+
 And the supplied runner reported:Processed 20 companies. Wrote results.csv. Your points: 4, 7, 11. Point accuracy: 60/60 (balanced: 100.0%).
+
 Disagreement analysis. There were no disagreements with `public_test/ground_truth.json` for the three selected points. Consequently, there are no misclassified companies or error causes to explain for this run. The uploaded results contain 20 company rows, all with an empty `point_errors` field and three interviews used, giving 60 interviews in total. Since each company used only its three primary interviews, the conditional backup-interview branch was not triggered in this run.
+
 Example interpretation. For Ashgrove Labs, the customer reported that salespeople merely sent price lists and that advice was obtained from rivals, supporting FAIL on point 4. A current employee reported constant overtime and monthly departures, supporting FAIL on point 7. A competitor described easily copied products and price-based competition, supporting FAIL on point 11. These decisions illustrate how the agent connects each verdict to relevant testimony rather than copying management's claims.
+
 Interpretation and limitations. The public result shows agreement with the answer key for both passing and failing cases in this run, but it does not establish accuracy on the private test companies or stability across repeated runs. Exact-quotation validation checks that cited words exist in the observations; it does not prove that the model's interpretation is correct. Likewise, a second call to the same model is a consistency check, not an independent human review. The results also rely on the assignment's simplified assumption that knowledgeable interviewees agree; real-world investment research would require broader corroboration. 
+
